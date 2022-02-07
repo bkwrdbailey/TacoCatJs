@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Bailey Barton</title>
+    <title>TacoCat: A Coding Project By Bailey Barton</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +22,7 @@
     <!-- === Nav Section ===-->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img class="d-inline-block align-text-top" src="img/BaileyBarton_WhtLogo.svg" width="36" height="30"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img class="d-inline-block align-text-top" src="img/BaileyBarton_WhtLogo.svg" width="36" height="30"> TacoCat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="new_blank" href="#">Git Repo</a> <!--Link To Github-->
+                    <a class="nav-link" target="new_blank" href="https://github.com/bkwrdbailey/TacoCatJs">Git Repo</a> <!--Link To Github-->
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="new_blank" href="#">About</a> <!--Link to Portfolio page-->
@@ -51,21 +51,79 @@
     <!-- === Main Section === -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for TacoCat</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Calls Hello World
-                        function helloWorld() {
-                            alert("hello world");
+                        // Acquires the user's string from the app page and handles the data flow
+                        function getString() {
+
+                            let stringVal = document.getElementById("userString").value.toLowerCase();
+                            let isWord = true;
+
+                            // Checks if only a single word is entered
+                            for (let index = 0; index < stringVal.length; index++) {
+
+                                if (stringVal[index] == " ") {
+                                    isWord = false;
+                                    alert("Error: Only enter a single word to be checked!");
+                                    break;
+                                }
+                            }
+
+                            // Checks to see if an integer value was given
+                            if (Number.isInteger(parseInt(stringVal))) {
+                                isWord = false;
+                                alert("Error: No integer values allowed!")
+                            }
+
+                            // Passes the input value onto the other functions
+                            if (isWord) {
+                                let revString = checkPalindrome(stringVal);
+                                displayResults(revString, stringVal);
+                            }
+                        }
+
+                        // Checks if the user's string is a palindrome
+                        function checkPalindrome(stringVal) {
+
+                            let revString = [];
+
+                            for (let index = stringVal.length - 1; index >= 0; index--) {
+                                revString += stringVal[index];
+                            }
+
+                            return revString;
+                        }
+
+                        // Displays to the user if their word was a palindrome
+                        function displayResults(revString, origVal) {
+
+                            if (revString == origVal) {
+                                document.getElementById("results").innerHTML = `Reversed result: ${revString} <br>${origVal} is a palindrome`;
+                            } else {
+                                document.getElementById("results").innerHTML = `Reversed result: ${revString} <br>${origVal} is not a palindrome`;
+                            }
                         }
                     </code>
                     </pre>
                 </div>
                 <div class="col col-lg-4">
-                    <p>The Code is structured in one function</p>
-                    <h5>Hello World</h5>
-                    <p>Hellow World is a function that displays and alert with a message of "Hello World"</p>
+                    <p>The Code is structured into three functions</p>
+                    <h5>TacoCat</h5>
+                    <p>The functions used for this application are <span style="font-weight: bold">getString()</span>, <span style="font-weight: bold">checkPalindrome()</span> and <span style="font-weight: bold">displayResults()</span>.</p>
+                    <h3>getString</h3>
+                    <p>
+                        This function grabs the value inputted by the user on the app page and makes checks to see if it was only one word and not an integer value. The value is passed onto the other functions from this function as well.
+                    </p>
+                    <h3>checkPalindrome</h3>
+                    <p>
+                        This function iterates through the user's string backwards via a for loop and stores each value into a reverse string array to be returned.
+                    </p>
+                    <h3>displayResults</h3>
+                    <p>
+                        This function compares the reversed string to the original user's string to see if it was a palindrome and outputs a certain result to the app page based on if that comparison was true or not.
+                    </p>
                 </div>
             </div>
         </div>

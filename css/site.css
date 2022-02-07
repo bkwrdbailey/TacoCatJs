@@ -5,6 +5,10 @@
     --white-color: #e7e7e7;
 }
 
+#results {
+    font-weight: 500;
+}
+
 h1, h2, h3, h4, h5 {
     color: var(--primary-color);
 }
