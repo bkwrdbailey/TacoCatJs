@@ -59,9 +59,9 @@
                 </div>
                 <div class="col col-lg-8">
                     <h4>Enter a string</h4>
-                    <form>
+                    <form onkeypress="return event.keyCode != 13">
                         <div class="col-12">
-                            <input id="userString" type="text" class="form-control" placeholder="Enter a string" aria-label="Enter a String" />
+                            <input id="userString" type="text" class="form-control" onkeypress="checkEnterPress(event)" placeholder="Enter a string" aria-label="Enter a String" />
                         </div>
                         <div class="col-12 mt-3 mb-3">
                             <button type="button" id="btnSubmit" class="btn btn-dark btn-lg">Check for Palindrome</button>

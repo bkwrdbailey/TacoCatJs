@@ -2,26 +2,16 @@
 function getString() {
 
     let stringVal = document.getElementById("userString").value.toLowerCase();
-    let isWord = true;
+    let regex = /^[A-Za-z]+$/; // Used for checking if valid string is given
+    let isValid = regex.test(document.getElementById("userString").value);
 
-    // Checks if only a single word is entered
-    for (let index = 0; index < stringVal.length; index++) {
-
-        if (stringVal[index] == " ") {
-            isWord = false;
-            alert("Error: Only enter a single word to be checked!");
-            break;
-        }
-    }
-
-    // Checks to see if an integer value was given
-    if (Number.isInteger(parseInt(stringVal))) {
-        isWord = false;
-        alert("Error: No integer values allowed!")
+    // Checks if the user string is valid
+    if (!isValid) {
+        alert("Error: Only enter letters, no special characters or numbers allowed!")
     }
 
     // Passes the input value onto the other functions
-    if (isWord) {
+    if (isValid) {
         let revString = checkPalindrome(stringVal);
         displayResults(revString, stringVal);
     }
